@@ -37,6 +37,9 @@ create table products (
 );
 
 
+
+-- 1. Реализовать сохранение покупок, которые пользователь добавил в корзину, в виде заказов, сохраняемых в БД.
+-- START
 -- заказ 
 create table orders (
     id                      bigserial primary key,
@@ -58,3 +61,4 @@ create table orders_items (
     created_at              timestamp default current_timestamp,
     updated_at              timestamp default current_timestamp
 );
+-- END
