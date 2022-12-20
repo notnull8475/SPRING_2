@@ -30,7 +30,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return webSecurity -> webSecurity.ignoring().requestMatchers("/auth", "/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/bootstrap/**", "/h2-console/**", "/products");
+        return webSecurity -> webSecurity.ignoring().requestMatchers("/auth", "/h2-console/**");
     }
 
     @Bean

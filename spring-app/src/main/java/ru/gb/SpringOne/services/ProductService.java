@@ -25,8 +25,8 @@ public class ProductService {
         if (maxPrice != null)
             specification = specification.and(ProductSpecifications.priceLesserOrEqualsThan(maxPrice));
         if (titlePart != null) specification = specification.and(ProductSpecifications.titleLike(titlePart));
-
-        return productsRepository.findAll(specification, PageRequest.of(page, rows));
+        Page<Product> products =  productsRepository.findAll(specification, PageRequest.of(page-1, rows));
+        return products;
     }
 
     public Product getProduct(Long id) {
