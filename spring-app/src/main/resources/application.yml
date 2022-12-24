@@ -10,6 +10,11 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: db/changelog/db.changelog-master.yml
+  security:
+    csrf:
+      disabled: true
 logging:
   level:
-    root: debug
+    root: error
+#  file:
+#    path: logs

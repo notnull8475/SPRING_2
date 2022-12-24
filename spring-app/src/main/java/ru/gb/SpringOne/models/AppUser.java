@@ -10,6 +10,7 @@ import org.hibernate.annotations.CurrentTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -48,5 +49,5 @@ public class AppUser {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<AppRole> roles;
+    private Collection<AppRole> roles;
 }
