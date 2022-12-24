@@ -38,7 +38,7 @@ public class SecurityConfiguration {
         return httpSecurity.authorizeHttpRequests()
                 .requestMatchers("/api/v1/admin/users")
                 .hasAnyRole("ROOT")
-                .requestMatchers("/api/v1/users")
+                .requestMatchers("/api/v1/users","/api/v1/roles")
                 .hasAnyRole("ADMIN", "ROOT")
                 .requestMatchers("/api/v1/admin/products")
                 .hasAnyRole("MANAGER", "ROOT")
