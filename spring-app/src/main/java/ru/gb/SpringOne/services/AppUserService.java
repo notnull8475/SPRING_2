@@ -45,7 +45,9 @@ public class AppUserService implements UserDetailsService {
     }
 
     public Page<AppUser> getUsers(int rows, int page) {
-        return usersRepository.findAll(PageRequest.of(page, rows));
+        Page<AppUser> userList = usersRepository.findAll(PageRequest.of(page, rows));
+        System.out.println(userList);
+        return userList;
     }
 
     public AppUser getUserById(Long id) {

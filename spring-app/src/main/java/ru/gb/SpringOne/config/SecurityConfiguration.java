@@ -10,8 +10,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 import ru.gb.SpringOne.filter.JwtRequestFilter;
 import ru.gb.SpringOne.services.AppUserService;
 
@@ -30,22 +32,23 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return webSecurity -> webSecurity.ignoring().requestMatchers("/auth", "/h2-console/**");
+        return webSecurity -> webSecurity.ignoring().requestMatchers("/auth");
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/api/v1/admin/users")
-                .hasAnyRole("ROOT")
-                .requestMatchers("/api/v1/users","/api/v1/roles")
-                .hasAnyRole("ADMIN", "ROOT")
-                .requestMatchers("/api/v1/admin/products")
-                .hasAnyRole("MANAGER", "ROOT")
-                .requestMatchers("/api/v1/products")
+                .requestMatchers("/api/v1/products/**")
                 .permitAll()
+                .requestMatchers("/api/v1/admin/users/**")
+                .hasAnyAuthority("ROOT")
+                .requestMatchers("/api/v1/users/**","/api/v1/roles/**")
+                .hasAnyAuthority("ADMIN", "ROOT")
+                .requestMatchers("/api/v1/admin/products/**")
+                .hasAnyAuthority("MANAGER", "ROOT")
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
                 .build();
     }
 

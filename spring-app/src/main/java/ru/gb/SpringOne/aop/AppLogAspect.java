@@ -17,32 +17,26 @@ public class AppLogAspect {
 
     @Around("execution(public * ru.gb.SpringOne.services.AppUserService.*(..))")
     public Object beforeAnyMethodInAppUserService(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        log.info("start service " + proceedingJoinPoint.getSignature().getName());
-        long start = System.currentTimeMillis();
-        Object out = proceedingJoinPoint.proceed();
-        long duration = System.currentTimeMillis() - start;
-        log.info((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
-        return out;
+        return getObject(proceedingJoinPoint);
     }
+
 
     @Around("execution(public * ru.gb.SpringOne.services.AppRoleService.*(..))")
     public Object beforeAnyMethodInAppRoleService(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        log.info("start service " + proceedingJoinPoint.getSignature().getName());
-        long start = System.currentTimeMillis();
-        Object out = proceedingJoinPoint.proceed();
-        long duration = System.currentTimeMillis() - start;
-        log.info((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
-        return out;
+        return getObject(proceedingJoinPoint);
     }
 
     @Around("execution(public * ru.gb.SpringOne.services.ProductService.*(..))")
     public Object beforeAnyMethodInProductService(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        log.info("start service " + proceedingJoinPoint.getSignature().getName());
+        return getObject(proceedingJoinPoint);
+    }
+
+    private static Object getObject(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        log.error("start service " + proceedingJoinPoint.getSignature().getName());
         long start = System.currentTimeMillis();
         Object out = proceedingJoinPoint.proceed();
         long duration = System.currentTimeMillis() - start;
-        log.info((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
+        log.error((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
         return out;
     }
-
 }

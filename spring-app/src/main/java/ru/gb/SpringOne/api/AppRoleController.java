@@ -19,12 +19,12 @@ public class AppRoleController {
 
 
     @GetMapping
-    public List<AppRole> getUsers() {
+    public List<AppRole> getRoles() {
         return roleService.getRoles();
     }
 
     @GetMapping("/{id}")
-    public AppRole getUser(@PathVariable Long id){
+    public AppRole getRole(@PathVariable Long id){
         return roleService.getRoleById(id);
     }
 }

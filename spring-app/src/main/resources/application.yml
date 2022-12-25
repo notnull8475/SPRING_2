@@ -10,11 +10,11 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: db/changelog/db.changelog-master.yml
+  security:
+    csrf:
+      disabled: true
 logging:
   level:
-    root: info
-  file:
-    path: logs
-jwt:
-  secret: tg5g98h45g98h45g9845hg98hf9834hf9834hjheriheriuher9g8h384y5934yhhtertg
-  expireTime: 3600000
+    root: error
+#  file:
+#    path: logs
