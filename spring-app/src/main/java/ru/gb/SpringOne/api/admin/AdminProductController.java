@@ -1,9 +1,8 @@
 package ru.gb.SpringOne.api.admin;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.SpringOne.dto.ProductDto;
+import ru.db.SpringOne.market.api.ProductDto;
 import ru.gb.SpringOne.services.ProductService;
 import ru.gb.SpringOne.utils.Converter;
 
