@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.exceptions;
+package ru.db.SpringOne.market.api;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

@@ -6,12 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.gb.SpringOne.exceptions.ResourceNotFoundException;
+import ru.db.SpringOne.market.api.ResourceNotFoundException;
 import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.repositories.ProductsRepository;
 import ru.gb.SpringOne.repositories.specifications.ProductSpecifications;
-
-import java.sql.Timestamp;
 
 @Service
 @RequiredArgsConstructor
