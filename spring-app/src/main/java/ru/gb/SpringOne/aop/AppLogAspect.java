@@ -6,7 +6,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -32,11 +31,11 @@ public class AppLogAspect {
     }
 
     private static Object getObject(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        log.error("start service " + proceedingJoinPoint.getSignature().getName());
+        log.info("start service " + proceedingJoinPoint.getSignature().getName());
         long start = System.currentTimeMillis();
         Object out = proceedingJoinPoint.proceed();
         long duration = System.currentTimeMillis() - start;
-        log.error((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
+        log.info((MethodSignature) proceedingJoinPoint.getSignature() + " duration " + duration);
         return out;
     }
 }

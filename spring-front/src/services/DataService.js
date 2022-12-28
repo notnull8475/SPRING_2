@@ -39,6 +39,10 @@ class DataService {
     deleteUser(id){
         return http.delete('/users/${id}')
     }
+
+    authUser(auth){
+        return http.postcss('/auth', auth)
+    }
 }
 
 export default new DataService();
