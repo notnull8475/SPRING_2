@@ -16,10 +16,4 @@ public class AppRole {
     private Long id;
     @Column(name = "role_name")
     private String name;
-    @ManyToMany
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<AppUser> users;
 }

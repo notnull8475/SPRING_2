@@ -15,23 +15,6 @@ public class AdminProductController {
     private final ProductService productService;
     private final Converter converter;
 
-    @GetMapping
-    public Page<ProductDto> getProducts(
-            @RequestParam(name = "rows", required = false, defaultValue = "5") int rows,
-            @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-            @RequestParam(name = "min_price", required = false) Long minPrice,
-            @RequestParam(name = "max_price", required = false) Long maxPrice,
-            @RequestParam(name = "title_part", required = false) String titlePart
-    ) {
-        if (rows < 0) rows = 5;
-        if (page < 0) page = 1;
-        return productService.getProducts(rows, page, minPrice, maxPrice, titlePart).map(converter::productToProductDto);
-    }
-
-    @GetMapping("/{id}")
-    public ProductDto getProduct(@PathVariable Long id) {
-        return converter.productToProductDto(productService.getProduct(id));
-    }
 
     @PostMapping
     public ProductDto create(@RequestBody ProductDto productDto) {
@@ -47,11 +30,4 @@ public class AdminProductController {
     public void deleteById(@PathVariable long id) {
         productService.deleteProduct(id);
     }
-
-
-    @GetMapping("/change_price")
-    public void changePrice(@RequestParam int productId, @RequestParam String delta) {
-        productService.changePrice(productId, Integer.parseInt(delta));
-    }
-
 }

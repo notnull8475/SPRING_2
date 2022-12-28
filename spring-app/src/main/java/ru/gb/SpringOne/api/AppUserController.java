@@ -22,11 +22,11 @@ public class AppUserController {
                                      @RequestParam(name = "page", required = false, defaultValue = "1") int page) {
         if (rows < 0) rows = 5;
         if (page < 0) page = 1;
-        return userService.getUsers(rows, page).map(converter::appUserToDto);
+        return userService.getUsers(rows, page - 1).map(converter::appUserToDto);
     }
 
     @GetMapping("/{id}")
-    public AppUserDto getUser(@PathVariable Long id){
+    public AppUserDto getUser(@PathVariable Long id) {
         return converter.appUserToDto(userService.getUserById(id));
     }
 }
