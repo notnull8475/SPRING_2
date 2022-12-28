@@ -1,23 +1,25 @@
-package ru.gb.SpringOne.services;
+package ru.gb.SpringOne.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import ru.gb.SpringOne.security.JwtProperties;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 @Component
+@Slf4j
 public class JwtService {
-
     @Autowired
     private JwtProperties properties;
 
@@ -57,5 +59,4 @@ public class JwtService {
                 .parseClaimsJws(value)
                 .getBody();
     }
-
 }
