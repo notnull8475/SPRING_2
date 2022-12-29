@@ -1,4 +1,4 @@
-package ru.gb.springone.market.auth.springauth;
+package ru.gb.springone.market.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

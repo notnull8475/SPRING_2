@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.services;
+package ru.gb.springone.market.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

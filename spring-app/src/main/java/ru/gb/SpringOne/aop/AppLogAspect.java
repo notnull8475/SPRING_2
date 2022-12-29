@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class AppLogAspect {
 
-    @Around("execution(public * ru.gb.SpringOne.services.AppUserService.*(..))")
+    @Around("execution(public * ru.gb.springone.market.auth.services.AppUserService.*(..))")
     public Object beforeAnyMethodInAppUserService(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return getObject(proceedingJoinPoint);
     }
 
 
-    @Around("execution(public * ru.gb.SpringOne.services.AppRoleService.*(..))")
+    @Around("execution(public * ru.gb.springone.market.auth.services.AppRoleService.*(..))")
     public Object beforeAnyMethodInAppRoleService(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return getObject(proceedingJoinPoint);
     }

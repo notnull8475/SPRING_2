@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.config;
+package ru.gb.springone.market.auth.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,12 +10,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CsrfFilter;
-import ru.gb.SpringOne.filter.JwtRequestFilter;
-import ru.gb.SpringOne.services.AppUserService;
+import ru.gb.springone.market.auth.services.AppUserService;
+
 
 @Configuration
 public class SecurityConfiguration {
@@ -25,8 +23,8 @@ public class SecurityConfiguration {
 
     // client -> [token] -> /resource
 
-    @Autowired
-    private JwtRequestFilter filter;
+//    @Autowired
+//    private JwtRequestFilter filter;
     @Autowired
     private AppUserService userService;
 
@@ -47,7 +45,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/api/v1/admin/products/**")
                 .hasAnyAuthority("MANAGER", "ROOT")
                 .and()
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
                 .build();
     }

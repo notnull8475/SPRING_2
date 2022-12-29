@@ -2,8 +2,8 @@ package ru.gb.SpringOne.utils;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.db.SpringOne.market.api.ProductDto;
-import ru.gb.SpringOne.dto.AppUserDto;
+import ru.db.springone.market.api.ProductDto;
+import ru.db.springone.market.api.AppUserDto;
 import ru.gb.SpringOne.models.AppUser;
 import ru.gb.SpringOne.models.Product;
 

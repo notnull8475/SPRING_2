@@ -1,13 +1,9 @@
-package ru.gb.SpringOne.api;
+package ru.gb.springone.market.admin.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.SpringOne.dto.AppUserDto;
 import ru.gb.SpringOne.models.AppRole;
 import ru.gb.SpringOne.services.AppRoleService;
-import ru.gb.SpringOne.services.AppUserService;
-import ru.gb.SpringOne.utils.Converter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.models;
+package ru.gb.springone.market.auth.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Set;
 
 @Data
 @Builder

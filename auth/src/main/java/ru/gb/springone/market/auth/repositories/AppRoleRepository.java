@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.repositories;
+package ru.gb.springone.market.auth.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

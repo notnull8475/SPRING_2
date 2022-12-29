@@ -1,8 +1,8 @@
-package ru.gb.SpringOne.api.admin;
+package ru.gb.springone.market.admin.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.db.SpringOne.market.api.ProductDto;
+import ru.db.springone.market.api.ProductDto;
 import ru.gb.SpringOne.services.ProductService;
 import ru.gb.SpringOne.utils.Converter;
 

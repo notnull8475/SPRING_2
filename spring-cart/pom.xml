@@ -8,11 +8,13 @@
         <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>ru.gb.SpringOne.market</groupId>
     <artifactId>spring-cart</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cart</name>
     <description>spring-cart</description>
+
     <properties>
         <java.version>19</java.version>
     </properties>

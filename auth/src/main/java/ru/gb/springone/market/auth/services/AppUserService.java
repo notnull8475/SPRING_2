@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.services;
+package ru.gb.springone.market.auth.services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

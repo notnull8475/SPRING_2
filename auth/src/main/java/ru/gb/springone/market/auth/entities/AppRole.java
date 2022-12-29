@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.models;
+package ru.gb.springone.market.auth.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

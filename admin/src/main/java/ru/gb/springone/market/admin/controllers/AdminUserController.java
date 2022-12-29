@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.api.admin;
+package ru.gb.springone.market.admin.controllers;
 
 
 import lombok.RequiredArgsConstructor;
