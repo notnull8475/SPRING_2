@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+iml,webstorm+iml,java,vue,vuejs,git,maven,gradle,visualstudiocode,angular
 
 ### User added ###
-files/
+_files/
 
 
 ### Angular ###

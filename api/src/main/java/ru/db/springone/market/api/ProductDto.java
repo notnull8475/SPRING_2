@@ -1,4 +1,4 @@
-package ru.db.SpringOne.market.api;
+package ru.db.springone.market.api;
 
 public class ProductDto {
     private Long id;
