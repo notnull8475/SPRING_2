@@ -10,3 +10,12 @@
     - POST    - /api/v1/admin/products/                 создать продукт
     - PUT     - /api/v1/admin/products/                 обновить продукт
     - DELETE  - /api/v1/admin/products/{id}             удалить продукт
+
+### microservices ###
+auth
+app
+gateway
+cart
+api
+front
+admin
