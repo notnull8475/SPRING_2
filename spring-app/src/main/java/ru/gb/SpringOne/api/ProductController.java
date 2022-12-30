@@ -36,4 +36,20 @@ public class ProductController {
     public ProductDto getProduct(@PathVariable Long id) {
         return converter.productToProductDto(productService.getProduct(id));
     }
+
+
+    @PostMapping
+    public ProductDto create(@RequestBody ProductDto productDto) {
+        return converter.productToProductDto(productService.save(converter.productDtoToProduct(productDto)));
+    }
+
+    @PutMapping
+    public ProductDto update(@RequestBody ProductDto productDto) {
+        return converter.productToProductDto(productService.update(converter.productDtoToProduct(productDto)));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable long id) {
+        productService.deleteProduct(id);
+    }
 }
