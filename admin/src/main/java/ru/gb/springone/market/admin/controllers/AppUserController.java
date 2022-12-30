@@ -4,17 +4,17 @@ package ru.gb.springone.market.admin.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.SpringOne.dto.AppUserDto;
-import ru.gb.SpringOne.services.AppUserService;
-import ru.gb.SpringOne.utils.Converter;
+import ru.db.springone.market.api.AppUserDto;
+import ru.gb.springone.market.admin.services.AppUserService;
+import ru.gb.springone.market.admin.utils.AdminConverter;
 
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class AppUserController {
 
+    private final AdminConverter converter;
     private final AppUserService userService;
-    private final Converter converter;
 
 
     @GetMapping

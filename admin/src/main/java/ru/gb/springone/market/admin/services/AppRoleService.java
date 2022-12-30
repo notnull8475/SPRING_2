@@ -1,9 +1,10 @@
-package ru.gb.springone.market.auth.services;
+package ru.gb.springone.market.admin.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.SpringOne.models.AppRole;
-import ru.gb.SpringOne.repositories.AppRoleRepository;
+import ru.gb.springone.market.admin.entities.AppRole;
+import ru.gb.springone.market.admin.repositories.AppRoleRepository;
+
 
 import javax.management.relation.RoleNotFoundException;
 import java.util.List;

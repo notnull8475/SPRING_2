@@ -4,8 +4,8 @@ package ru.gb.springone.market.admin.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.SpringOne.services.AppRoleService;
-import ru.gb.SpringOne.services.AppUserService;
+import ru.gb.springone.market.admin.services.AppRoleService;
+import ru.gb.springone.market.admin.services.AppUserService;
 
 @RestController
 @RequestMapping("/api/v1/admin/users")

@@ -1,9 +1,9 @@
-package ru.gb.springone.market.auth.utils;
+package ru.gb.springone.market.admin.utils;
 
 import ru.db.springone.market.api.AppUserDto;
-import ru.gb.springone.market.auth.entities.AppUser;
+import ru.gb.springone.market.admin.entities.AppUser;
 
-public class AuthConverter {
+public class AdminConverter {
     public AppUserDto appUserToDto(AppUser appUser) {
         AppUserDto userDto = new AppUserDto();
         userDto.setId(appUser.getId());
