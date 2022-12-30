@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import ru.db.SpringOne.market.api.AuthRequest;
-import ru.db.SpringOne.market.api.AuthResponse;
-import ru.gb.SpringOne.security.JwtService;
+import ru.db.springone.market.api.AuthRequest;
+import ru.db.springone.market.api.AuthResponse;
+import ru.gb.springone.market.auth.security.JwtService;
 
 @RestController
 @Slf4j

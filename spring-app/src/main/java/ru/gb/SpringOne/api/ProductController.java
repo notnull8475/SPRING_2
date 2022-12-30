@@ -3,17 +3,17 @@ package ru.gb.SpringOne.api;
 
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.db.SpringOne.market.api.ProductDto;
+import ru.db.springone.market.api.ProductDto;
 import ru.gb.SpringOne.services.ProductService;
-import ru.gb.SpringOne.utils.Converter;
+import ru.gb.SpringOne.utils.AppConverter;
 
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
-    private final Converter converter;
+    private final AppConverter converter;
 
-    public ProductController(ProductService productService, Converter converter) {
+    public ProductController(ProductService productService, AppConverter converter) {
         this.productService = productService;
         this.converter = converter;
     }

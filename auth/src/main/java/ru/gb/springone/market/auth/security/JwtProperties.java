@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.security;
+package ru.gb.springone.market.auth.security;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

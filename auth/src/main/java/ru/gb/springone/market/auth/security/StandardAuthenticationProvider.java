@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.security;
+package ru.gb.springone.market.auth.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.utils;
+package ru.gb.springone.market.auth.utils;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -6,9 +6,9 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.gb.SpringOne.models.AppUser;
-import ru.gb.SpringOne.repositories.AppRoleRepository;
-import ru.gb.SpringOne.repositories.AppUsersRepository;
+import ru.gb.springone.market.auth.entities.AppUser;
+import ru.gb.springone.market.auth.repositories.AppRoleRepository;
+import ru.gb.springone.market.auth.repositories.AppUsersRepository;
 
 import java.util.Collections;
 import java.util.Objects;

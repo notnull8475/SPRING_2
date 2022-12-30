@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.gb.SpringOne.models.AppRole;
-import ru.gb.SpringOne.models.AppUser;
-import ru.gb.SpringOne.repositories.AppUsersRepository;
+import ru.gb.springone.market.auth.entities.AppRole;
+import ru.gb.springone.market.auth.entities.AppUser;
+import ru.gb.springone.market.auth.repositories.AppUsersRepository;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
