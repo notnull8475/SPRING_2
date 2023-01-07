@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+            allowedHeaders: "*"
+      routes:
+        - id: app-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/magazine-app/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/app
+            - JwtAuthFilter
+        - id: cart-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/magazine-cart/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/cart
+            - JwtAuthFilter
+        - id: auth-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/magazine-auth/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/auth
+            - JwtAuthFilter
+        - id: admin-service
+          uri: http://localhost:8182
+          predicates:
+            - Path=/magazine-admin
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/admin
+            - JwtAuthFilter
+#logging:
+#  level:
+#    reactor:
+#      netty: TRACE
+#    org:
+#      springframework:
+#        cloud:
+#          gateway: TRACE

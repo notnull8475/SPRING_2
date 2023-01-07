@@ -3,6 +3,7 @@ package ru.gb.springone.market.auth.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -37,12 +38,28 @@ public class SecurityConfiguration {
         return httpSecurity.authorizeHttpRequests()
                 .requestMatchers("/api/v1/products/**")
                 .permitAll()
-                .requestMatchers("/api/v1/admin/users/**")
+
+                .requestMatchers(HttpMethod.POST,"/api/v1/users/**")
                 .hasAnyAuthority("ROOT")
-                .requestMatchers("/api/v1/users/**","/api/v1/roles/**")
+                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**")
+                .hasAnyAuthority("ROOT")
+                .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**")
+                .hasAnyAuthority("ROOT")
+
+                .requestMatchers(HttpMethod.POST,"/api/v1/users/**","/api/v1/roles/**")
                 .hasAnyAuthority("ADMIN", "ROOT")
-                .requestMatchers("/api/v1/admin/products/**")
+                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**","/api/v1/roles/**")
+                .hasAnyAuthority("ADMIN", "ROOT")
+                .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**","/api/v1/roles/**")
+                .hasAnyAuthority("ADMIN", "ROOT")
+
+                .requestMatchers(HttpMethod.POST,"/api/v1/products/**")
                 .hasAnyAuthority("MANAGER", "ROOT")
+                .requestMatchers(HttpMethod.PUT,"/api/v1/products/**")
+                .hasAnyAuthority("MANAGER", "ROOT")
+                .requestMatchers(HttpMethod.DELETE,"/api/v1/products/**")
+                .hasAnyAuthority("MANAGER", "ROOT")
+
                 .and()
 //                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()

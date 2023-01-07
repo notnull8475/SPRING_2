@@ -10,3 +10,14 @@
     - POST    - /api/v1/admin/products/                 создать продукт
     - PUT     - /api/v1/admin/products/                 обновить продукт
     - DELETE  - /api/v1/admin/products/{id}             удалить продукт
+
+
+
+| service name  | port | prefix |
+|---------------|------|--------|
+| auth-service  | 8081 | /auth  |
+| admin-service | 8082 | /admin |
+| app           | 8083 | /app   |
+| cart-service  | 8084 | /cart  |
+
+front-service work on node.js port is 8080

@@ -14,6 +14,4 @@ public class AdminUserController {
     private final AppUserService userService;
     private final AppRoleService roleService;
 
-
-
 }
