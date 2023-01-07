@@ -24,7 +24,7 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
-    @PostMapping("/api/v1/auth")
+    @PostMapping("/auth")
     public AuthResponse authorize(@RequestBody AuthRequest request) {
         try {
             Authentication authenticate = authenticationManager.authenticate(

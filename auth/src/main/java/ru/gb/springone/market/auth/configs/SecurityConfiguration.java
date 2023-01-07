@@ -3,15 +3,17 @@ package ru.gb.springone.market.auth.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import ru.gb.springone.market.auth.services.AppUserService;
 
 
@@ -23,7 +25,7 @@ public class SecurityConfiguration {
 
     // client -> [token] -> /resource
 
-//    @Autowired
+    //    @Autowired
 //    private JwtRequestFilter filter;
     @Autowired
     private AppUserService userService;
@@ -36,30 +38,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests()
-                .requestMatchers("/api/v1/products/**")
-                .permitAll()
-
-                .requestMatchers(HttpMethod.POST,"/api/v1/users/**")
-                .hasAnyAuthority("ROOT")
-                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**")
-                .hasAnyAuthority("ROOT")
-                .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**")
-                .hasAnyAuthority("ROOT")
-
-                .requestMatchers(HttpMethod.POST,"/api/v1/users/**","/api/v1/roles/**")
-                .hasAnyAuthority("ADMIN", "ROOT")
-                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**","/api/v1/roles/**")
-                .hasAnyAuthority("ADMIN", "ROOT")
-                .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**","/api/v1/roles/**")
-                .hasAnyAuthority("ADMIN", "ROOT")
-
-                .requestMatchers(HttpMethod.POST,"/api/v1/products/**")
-                .hasAnyAuthority("MANAGER", "ROOT")
-                .requestMatchers(HttpMethod.PUT,"/api/v1/products/**")
-                .hasAnyAuthority("MANAGER", "ROOT")
-                .requestMatchers(HttpMethod.DELETE,"/api/v1/products/**")
-                .hasAnyAuthority("MANAGER", "ROOT")
-
+                .anyRequest().permitAll()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .headers().frameOptions().disable()
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
 //                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()

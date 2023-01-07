@@ -13,11 +13,12 @@
 
 
 
-| service name  | port | prefix |
-|---------------|------|--------|
-| auth-service  | 8081 | /auth  |
-| admin-service | 8082 | /admin |
-| app           | 8083 | /app   |
-| cart-service  | 8084 | /cart  |
+| service name | port | prefix |
+|--------------|------|--------|
+| auth-service | 8081 | /auth  |
+| app          | 8083 | /app   |
+| cart-service | 8084 | /cart  |
+| gateway      | 8080 | /      |
 
-front-service work on node.js port is 8080
+gateway port 8080
+front-service work on node.js port is 5173
