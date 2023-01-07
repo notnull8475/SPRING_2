@@ -21,3 +21,32 @@
 | cart-service  | 8084 | /cart  |
 
 front-service work on node.js port is 8080
+
+                                                       
+права доступа по ролям, что бы не забыть.
+```java
+      .requestMatchers("/api/v1/products/**")
+      .permitAll()
+
+      .requestMatchers(HttpMethod.POST,"/api/v1/users/**")
+      .hasAnyAuthority("ROOT")
+      .requestMatchers(HttpMethod.PUT,"/api/v1/users/**")
+      .hasAnyAuthority("ROOT")
+      .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**")
+      .hasAnyAuthority("ROOT")
+
+      .requestMatchers(HttpMethod.POST,"/api/v1/users/**","/api/v1/roles/**")
+      .hasAnyAuthority("ADMIN", "ROOT")
+      .requestMatchers(HttpMethod.PUT,"/api/v1/users/**","/api/v1/roles/**")
+      .hasAnyAuthority("ADMIN", "ROOT")
+      .requestMatchers(HttpMethod.DELETE,"/api/v1/users/**","/api/v1/roles/**")
+      .hasAnyAuthority("ADMIN", "ROOT")
+
+      .requestMatchers(HttpMethod.POST,"/api/v1/products/**")
+      .hasAnyAuthority("MANAGER", "ROOT")
+      .requestMatchers(HttpMethod.PUT,"/api/v1/products/**")
+      .hasAnyAuthority("MANAGER", "ROOT")
+      .requestMatchers(HttpMethod.DELETE,"/api/v1/products/**")
+      .hasAnyAuthority("MANAGER", "ROOT")
+       
+```

@@ -1,4 +1,4 @@
-package ru.gb.springone.market.admin.services;
+package ru.gb.springone.market.auth.services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.gb.springone.market.admin.entities.AppRole;
-import ru.gb.springone.market.admin.entities.AppUser;
-import ru.gb.springone.market.admin.repositories.AppUsersRepository;
+import ru.gb.springone.market.auth.entities.AppRole;
+import ru.gb.springone.market.auth.entities.AppUser;
+import ru.gb.springone.market.auth.repositories.AppUsersRepository;
 
 
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package ru.gb.springone.market.admin.utils;
+package ru.gb.springone.market.auth.utils;
 
 import ru.db.springone.market.api.AppUserDto;
 import ru.gb.springone.market.admin.entities.AppUser;
