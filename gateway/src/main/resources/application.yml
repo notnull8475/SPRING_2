@@ -1,6 +1,8 @@
 server:
   port: 8080
-
+jwt:
+  secret:
+    AuFiEsUwvlnGqQA7u2DtUhaXDAQpaMpt56bi0M88Bmd9d1SmElDK1TtXcbJEC9KPPCKa5J
 spring:
   application:
     name: gateway

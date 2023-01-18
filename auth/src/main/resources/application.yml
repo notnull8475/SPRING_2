@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/springone
@@ -18,3 +19,5 @@ logging:
     root: error
 #  file:
 #    path: logs
+server:
+  port: 8081

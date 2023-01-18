@@ -8,7 +8,7 @@
         <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ru.gb.SpringOne.market.auth</groupId>
+    <groupId>ru.gb.SpringOne.market</groupId>
     <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-auth</name>
@@ -51,16 +51,16 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>ru.gb.SpringOne</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
+         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.gb.SpringOne.market</groupId>
+            <artifactId>api</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

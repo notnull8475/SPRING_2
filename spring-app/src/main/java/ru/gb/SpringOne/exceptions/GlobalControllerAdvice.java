@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import ru.db.SpringOne.market.api.ResourceNotFoundException;
+import ru.db.springone.market.api.ResourceNotFoundException;
 
 @ControllerAdvice
 @Slf4j

@@ -18,7 +18,7 @@ public class JwtTokenUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.lifetime}")
+    @Value("${jwt.expireTime}")
     private Integer jwtLifetime;
 
     public String generateToken(UserDetails userDetails) {

@@ -15,7 +15,6 @@ import ru.gb.springone.market.auth.entities.AppRole;
 import ru.gb.springone.market.auth.entities.AppUser;
 import ru.gb.springone.market.auth.repositories.AppUsersRepository;
 
-
 import java.util.Collection;
 import java.util.stream.Collectors;
 

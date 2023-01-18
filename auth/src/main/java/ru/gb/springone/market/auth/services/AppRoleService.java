@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.gb.springone.market.auth.entities.AppRole;
 import ru.gb.springone.market.auth.repositories.AppRoleRepository;
 
-
 import javax.management.relation.RoleNotFoundException;
 import java.util.List;
 

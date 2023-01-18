@@ -8,7 +8,7 @@
         <version>3.0.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ru.gb.SpringOne.market.gateway</groupId>
+    <groupId>ru.gb.SpringOne.market</groupId>
     <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gateway</name>
