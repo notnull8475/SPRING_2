@@ -39,7 +39,8 @@ export default {
           .then(response => {
             this.products = response.data.content
           })
-          .catch(e => alert(e))
+          .catch(e => console.log(e))
+          // .catch(e => alert(e))
     }
   },
   async mounted() {

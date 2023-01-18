@@ -1,16 +1,50 @@
 <script setup>
-import {RouterView} from 'vue-router'
-import HeaderVue from '@/components/HeaderVue.vue'
-import FooterVue from '@/components/FooterVue.vue';</script>
+import {RouterLink, RouterView} from 'vue-router';</script>
 
 <template>
-  <div class="d-flex flex-column min-vh-100">
-    <HeaderVue/>
+  <header>
     <div class="container">
-      <RouterView/>
+      <nav class="navbar navbar-expand-lg bg-dark text-white">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <RouterLink to="/" class="nav-link text-white">Home</RouterLink>
+              <RouterLink to="/products" class="nav-link text-white">Products</RouterLink>
+              <RouterLink to="/login" class="nav-link text-white">Login</RouterLink>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
-
-    <FooterVue/>
+  </header>
+  <div class="container">
+    <RouterView/>
   </div>
 
+  <div class="mt-auto">
+    <div class="container">
+      <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+        <div class="col mb-3">
+          <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="col mb-3">
+          <h5>Меню</h5>
+          <ul class="nav flex-column">
+            <RouterLink to="/" class="nav-link p-0 text-muted">Home</RouterLink>
+            <RouterLink to="/products" class="nav-link p-0 text-muted">Products</RouterLink>
+            <RouterLink to="/login" class="nav-link p-0 text-muted">Login</RouterLink>
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </div>
 </template>

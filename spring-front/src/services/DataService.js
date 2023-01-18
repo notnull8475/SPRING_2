@@ -41,7 +41,7 @@ class DataService {
     }
 
     authUser(auth){
-        return http.postcss('/auth', auth)
+        return http.post('/auth', auth)
     }
 }
 
