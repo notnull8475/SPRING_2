@@ -41,14 +41,6 @@ spring:
             - StripPrefix=1
             - PrefixPath=/auth
             - JwtAuthFilter
-        - id: admin-service
-          uri: http://localhost:8182
-          predicates:
-            - Path=/magazine-admin
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/admin
-            - JwtAuthFilter
 #logging:
 #  level:
 #    reactor:

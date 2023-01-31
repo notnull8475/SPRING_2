@@ -1,4 +1,6 @@
-
+server:
+  port:
+    8082
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/springone
@@ -14,10 +16,3 @@ spring:
   security:
     csrf:
       disabled: true
-logging:
-  level:
-    root: error
-#  file:
-#    path: logs
-server:
-  port: 8081

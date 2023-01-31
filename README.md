@@ -15,10 +15,14 @@
 
 | service name  | port | prefix |
 |---------------|------|--------|
-| auth-service  | 8081 | /auth  |
-| admin-service | 8082 | /admin |
-| app           | 8083 | /app   |
-| cart-service  | 8084 | /cart  |
+| front         | 8000 |        |
+| gateway       | 8080 |        |
+| name-service  | 8081 |        |
+| auth-service  | 8082 | /auth  |
+| admin-service | 8083 | /admin |
+| app           | 8084 | /app   |
+| cart-service  | 8085 | /cart  |
+| 
 
 front-service work on node.js port is 8080
 
