@@ -6,12 +6,6 @@ databaseChangeLog:
         - createTable:
             tableName: users_roles
             columns:
-#              - column:
-#                  name: id
-#                  type: bigserial
-#                  constraints:
-#                    primaryKey: true
-#                    nullable: false
               - column:
                   name: user_id
                   type: bigint

@@ -26,15 +26,8 @@ public class AppUser {
     private Long id;
     @Column
     private String username;
-    private String email;
-    @Column(columnDefinition = "varchar(255) default ''")
-    private String firstname;
-    @Column(columnDefinition = "varchar(255) default ''")
-    private String lastname;
     @Column(nullable = false)
     private String password;
-    @Column(columnDefinition = "boolean default true")
-    private boolean enabled;
     @CreationTimestamp
     private Timestamp createdAt;
     @UpdateTimestamp

@@ -1,6 +1,6 @@
 package ru.db.springone.market.api;
 
-public class AuthRequest {
+public class JwtRequest {
     private String username;
     private String password;
 

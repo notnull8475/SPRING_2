@@ -11,6 +11,8 @@ import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.repositories.ProductsRepository;
 import ru.gb.SpringOne.repositories.specifications.ProductSpecifications;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -27,8 +29,8 @@ public class ProductService {
         return products;
     }
 
-    public Product getProduct(Long id) {
-        return productsRepository.getReferenceById(id);
+    public Optional<Product> getProduct(Long id) {
+        return productsRepository.findById(id);
     }
 
     public Product save(Product product) {

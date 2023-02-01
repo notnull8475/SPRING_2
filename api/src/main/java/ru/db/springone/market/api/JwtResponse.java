@@ -1,11 +1,11 @@
 package ru.db.springone.market.api;
 
-public class AuthResponse{
+public class JwtResponse {
     private String token;
 
-    public AuthResponse(){}
+    public JwtResponse(){}
 
-    public AuthResponse(String token) {
+    public JwtResponse(String token) {
         this.token = token;
     }
 

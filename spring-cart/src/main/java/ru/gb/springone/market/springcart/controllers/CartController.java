@@ -1,13 +1,12 @@
 package ru.gb.springone.market.springcart.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.CartDto;
 import ru.gb.springone.market.springcart.converters.CartConverter;
 import ru.gb.springone.market.springcart.services.CartService;
+
+import java.util.UUID;
 
 
 @RestController
@@ -28,7 +27,6 @@ public class CartController {
     public void clearCart() {
         cartService.clear();
     }
-
 
     @GetMapping("/remove/{id}")
     public void removeFromCart(@PathVariable Long id) {

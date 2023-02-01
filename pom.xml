@@ -6,7 +6,6 @@
 
     <modules>
         <module>gateway</module>
-        <module>naming-service</module>
         <module>spring-app</module>
         <module>spring-cart</module>
         <module>api</module>

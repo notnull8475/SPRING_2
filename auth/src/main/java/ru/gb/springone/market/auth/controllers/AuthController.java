@@ -1,41 +1,39 @@
 package ru.gb.springone.market.auth.controllers;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-import ru.db.springone.market.api.AuthRequest;
-import ru.db.springone.market.api.AuthResponse;
-import ru.gb.springone.market.auth.security.JwtService;
+import ru.db.springone.market.api.AppError;
+import ru.db.springone.market.api.JwtRequest;
+import ru.db.springone.market.api.JwtResponse;
+import ru.gb.springone.market.auth.services.AppUserService;
+import ru.gb.springone.market.auth.utils.JwtTokenUtil;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class AuthController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
+    private final AppUserService userService;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/api/v1/auth")
-    public AuthResponse authorize(@RequestBody AuthRequest request) {
+    public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
         try {
-            Authentication authenticate = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-            );
-
-            UserDetails user = (UserDetails) authenticate.getPrincipal();
-            String jwtToken = jwtService.generateJwtToken(user);
-            return new AuthResponse(jwtToken);
-        } catch (AuthenticationException e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        } catch (BadCredentialsException e) {
+            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Incorrect username or password"), HttpStatus.UNAUTHORIZED);
         }
+        UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
+        String token = jwtTokenUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +15,7 @@ import ru.gb.springone.market.auth.entities.AppUser;
 import ru.gb.springone.market.auth.repositories.AppUsersRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,16 +23,17 @@ public class AppUserService implements UserDetailsService {
     @Autowired
     private AppUsersRepository usersRepository;
 
+
+    public Optional<AppUser> findByUsername(String username) {
+        return usersRepository.findByUsername(username);
+    }
+
     @Override
     @Transactional
+    @org.springframework.transaction.annotation.Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        AppUser user = usersRepository.findByUsername(username).orElseThrow();
-        return User.builder()
-                .username(username)
-                .password(user.getPassword())
-                .authorities(mapRolesToAuthorities(user.getRoles()))
-                .build();
+        AppUser user = findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
 

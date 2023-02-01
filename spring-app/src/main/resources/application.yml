@@ -1,5 +1,7 @@
 server:
   port: 8084
+  servlet:
+    context-path: /market-app
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/springone
@@ -15,6 +17,13 @@ spring:
   security:
     csrf:
       disabled: true
+
+integrations:
+  spring-cart:
+    url: http://localhost:8085/market-carts
+    connect-timeout: 5000
+    read-timeout: 10000
+    write-timeout: 5000
 #logging:
 #  level:
 #    root: debug

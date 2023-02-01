@@ -4,6 +4,8 @@ package ru.gb.SpringOne.api;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.ProductDto;
+import ru.db.springone.market.api.ResourceNotFoundException;
+import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.services.ProductService;
 import ru.gb.SpringOne.utils.AppConverter;
 
@@ -27,14 +29,15 @@ public class ProductController {
             @RequestParam(name = "max_price", required = false) Long maxPrice,
             @RequestParam(name = "title_part", required = false) String titlePart
     ) {
-        if (rows < 0) rows = 5;
-        if (page < 0) page = 1;
+        if (rows < 1) rows = 5;
+        if (page < 1) page = 1;
         return productService.getProducts(rows, page, minPrice, maxPrice, titlePart).map(converter::productToProductDto);
     }
 
     @GetMapping("/{id}")
-    public ProductDto getProduct(@PathVariable Long id) {
-        return converter.productToProductDto(productService.getProduct(id));
+    public ProductDto getProductById(@PathVariable Long id) {
+        Product p = productService.getProduct(id).orElseThrow(() -> new ResourceNotFoundException("Продукт не найден, id: " + id));
+        return converter.productToProductDto(p);
     }
 
 

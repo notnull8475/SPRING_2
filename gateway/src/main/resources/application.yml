@@ -18,25 +18,25 @@ spring:
             allowedHeaders: "*"
       routes:
         - id: app-service
-          uri: http://localhost:8083
+          uri: http://localhost:8084
           predicates:
-            - Path=/magazine-app/**
+            - Path=/market-app/**
           filters:
             - StripPrefix=1
             - PrefixPath=/app
             - JwtAuthFilter
         - id: cart-service
-          uri: http://localhost:8084
+          uri: http://localhost:8085
           predicates:
-            - Path=/magazine-cart/**
+            - Path=/market-cart/**
           filters:
             - StripPrefix=1
             - PrefixPath=/cart
             - JwtAuthFilter
         - id: auth-service
-          uri: http://localhost:8081
+          uri: http://localhost:8082
           predicates:
-            - Path=/magazine-auth/**
+            - Path=/market-auth/**
           filters:
             - StripPrefix=1
             - PrefixPath=/auth

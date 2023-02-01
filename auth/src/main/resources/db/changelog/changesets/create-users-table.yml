@@ -19,25 +19,10 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: email
-                  type: varchar(255)
-                  constraints:
-                    unique: true
-              - column:
-                  name: firstname
-                  type: varchar(50)
-              - column:
-                  name: lastname
-                  type: varchar(50)
-              - column:
                   name: password
                   type: varchar(255)
                   constraints:
                     nullable: false
-              - column:
-                  name: enabled
-                  type: boolean
-                  defaultValueBoolean: true
               - column:
                   name: created_at
                   type: timestamp
