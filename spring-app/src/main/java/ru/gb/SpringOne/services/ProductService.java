@@ -11,6 +11,7 @@ import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.repositories.ProductsRepository;
 import ru.gb.SpringOne.repositories.specifications.ProductSpecifications;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,7 @@ public class ProductService {
         if (maxPrice != null)
             specification = specification.and(ProductSpecifications.priceLesserOrEqualsThan(maxPrice));
         if (titlePart != null) specification = specification.and(ProductSpecifications.titleLike(titlePart));
-        Page<Product> products =  productsRepository.findAll(specification, PageRequest.of(page-1, rows));
+        Page<Product> products = productsRepository.findAll(specification, PageRequest.of(page - 1, rows));
         return products;
     }
 
@@ -34,7 +35,7 @@ public class ProductService {
     }
 
     public Product save(Product product) {
-        assert product.getId()==null;
+        assert product.getId() == null;
         return productsRepository.save(product);
     }
 
@@ -52,7 +53,7 @@ public class ProductService {
     @Transactional
     public void changePrice(long productId, int delta) {
         Product p = productsRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Невозможно обновить, продукт не найден"));
-        p.setPrice(p.getPrice() + delta);
+        p.setPrice(p.getPrice().add(BigDecimal.valueOf(delta)));
     }
 
 }

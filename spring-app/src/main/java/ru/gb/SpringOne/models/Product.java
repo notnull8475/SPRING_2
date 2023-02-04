@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 
@@ -25,7 +26,7 @@ public class Product {
     private Long id;
     private String title;
     private String description;
-    private Long price;
+    private BigDecimal price;
     private boolean actual;
     @CreationTimestamp
     private Timestamp createdAt;

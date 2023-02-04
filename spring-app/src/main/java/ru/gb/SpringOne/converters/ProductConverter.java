@@ -1,13 +1,11 @@
-package ru.gb.SpringOne.utils;
+package ru.gb.SpringOne.converters;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.db.springone.market.api.ProductDto;
 import ru.gb.SpringOne.models.Product;
 
 @Component
-@RequiredArgsConstructor
-public class AppConverter {
+public class ProductConverter {
     public Product productDtoToProduct(ProductDto productDto) {
         return Product.builder()
                 .id(productDto.getId())

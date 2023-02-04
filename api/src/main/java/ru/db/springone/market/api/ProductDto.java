@@ -1,9 +1,11 @@
 package ru.db.springone.market.api;
 
+import java.math.BigDecimal;
+
 public class ProductDto {
     private Long id;
     private String title;
-    private Long price;
+    private BigDecimal price;
     private String description;
 
     public Long getId() {
@@ -22,11 +24,11 @@ public class ProductDto {
         this.title = title;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -38,7 +40,7 @@ public class ProductDto {
         this.description = description;
     }
 
-    public ProductDto(String title, Long price, String description) {
+    public ProductDto(String title, BigDecimal price, String description) {
         this.title = title;
         this.price = price;
         this.description = description;

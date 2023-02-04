@@ -31,10 +31,10 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: price
-                  type: bigint
+                  type: numeric(8,2)
               - column:
                   name: total_price
-                  type: bigint
+                  type: numeric(8,2)
               - column:
                   name: created_at
                   type: timestamp

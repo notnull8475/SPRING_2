@@ -3,6 +3,7 @@ package ru.gb.springone.market.springcart.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.CartDto;
+import ru.db.springone.market.api.StringResponse;
 import ru.gb.springone.market.springcart.converters.CartConverter;
 import ru.gb.springone.market.springcart.services.CartService;
 
@@ -13,29 +14,33 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/carts")
 public class CartController {
-
-
     private final CartService cartService;
     private final CartConverter cartConverter;
+//TODO Добавить UUID и перенести его в фильтр
+
+    @GetMapping("/generate_uuid")
+    public StringResponse generateUuid() {
+        return new StringResponse(UUID.randomUUID().toString());
+    }
 
     @GetMapping("/add/{id}")
-    public void addToCart(@PathVariable Long id) {
-        cartService.add(id);
+    public void addToCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
+        cartService.add(username, id);
     }
 
     @GetMapping("/clear")
-    public void clearCart() {
-        cartService.clear();
+    public void clearCart(@RequestHeader(required = false) String username) {
+        cartService.clear(username);
     }
 
     @GetMapping("/remove/{id}")
-    public void removeFromCart(@PathVariable Long id) {
-        cartService.remove(id);
+    public void removeFromCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
+        cartService.remove(username, id);
     }
 
     @GetMapping
-    public CartDto getCurrentCart() {
-        return cartConverter.entityToDto(cartService.getCurrentCart());
+    public CartDto getCurrentCart(@RequestHeader(required = false) String username) {
+        return cartConverter.entityToDto(cartService.getCurrentCart(username));
     }
 
 }
