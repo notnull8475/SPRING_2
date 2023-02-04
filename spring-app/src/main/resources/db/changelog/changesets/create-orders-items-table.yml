@@ -35,12 +35,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: price_per_item
-                  type: bigint
+                  type: numeric(8,2)
                   constraints:
                     nullable: false
               - column:
                   name: price
-                  type: bigint
+                  type: numeric(8,2)
                   constraints:
                     nullable: false
               - column:

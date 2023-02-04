@@ -1,11 +1,13 @@
 package ru.db.springone.market.api;
 
+import java.math.BigDecimal;
+
 public class CartItemDto {
     private Long productId;
     private String productTitle;
     private int quantity;
-    private Long pricePerProduct;
-    private Long price;
+    private BigDecimal pricePerProduct;
+    private BigDecimal price;
 
     public Long getProductId() {
         return productId;
@@ -31,19 +33,19 @@ public class CartItemDto {
         this.quantity = quantity;
     }
 
-    public Long getPricePerProduct() {
+    public BigDecimal getPricePerProduct() {
         return pricePerProduct;
     }
 
-    public void setPricePerProduct(Long  pricePerProduct) {
+    public void setPricePerProduct(BigDecimal  pricePerProduct) {
         this.pricePerProduct = pricePerProduct;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

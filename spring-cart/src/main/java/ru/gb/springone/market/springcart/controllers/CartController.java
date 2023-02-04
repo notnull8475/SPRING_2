@@ -3,6 +3,7 @@ package ru.gb.springone.market.springcart.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.CartDto;
+import ru.db.springone.market.api.StringResponse;
 import ru.gb.springone.market.springcart.converters.CartConverter;
 import ru.gb.springone.market.springcart.services.CartService;
 
@@ -15,10 +16,16 @@ import java.util.UUID;
 public class CartController {
     private final CartService cartService;
     private final CartConverter cartConverter;
+//TODO Добавить UUID и перенести его в фильтр
+
+    @GetMapping("/generate_uuid")
+    public StringResponse generateUuid() {
+        return new StringResponse(UUID.randomUUID().toString());
+    }
 
     @GetMapping("/add/{id}")
-    public void addToCart(@RequestHeader(required = false) String username,@PathVariable Long id) {
-        cartService.add(username,id);
+    public void addToCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
+        cartService.add(username, id);
     }
 
     @GetMapping("/clear")
@@ -27,8 +34,8 @@ public class CartController {
     }
 
     @GetMapping("/remove/{id}")
-    public void removeFromCart(@RequestHeader(required = false) String username,@PathVariable Long id) {
-        cartService.remove(username,id);
+    public void removeFromCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
+        cartService.remove(username, id);
     }
 
     @GetMapping

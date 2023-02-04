@@ -3,6 +3,7 @@ package ru.gb.springone.market.springcart.models;
 import lombok.Data;
 import ru.db.springone.market.api.ProductDto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,10 +11,11 @@ import java.util.List;
 @Data
 public class Cart {
     private List<CartItem> items;
-    private int totalPrice;
+    private BigDecimal totalPrice;
 
     public Cart() {
         this.items = new ArrayList<>();
+        this.totalPrice = BigDecimal.ZERO;
     }
 
     public List<CartItem> getItems() {
@@ -40,13 +42,11 @@ public class Cart {
 
     public void clear() {
         items.clear();
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
     }
 
     private void recalculate() {
-        totalPrice = 0;
-        for (CartItem item : items) {
-            totalPrice += item.getPrice();
-        }
+        totalPrice = BigDecimal.ZERO;
+        items.forEach(i -> totalPrice = totalPrice.add(i.getPrice()));
     }
 }
