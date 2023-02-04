@@ -3,17 +3,17 @@ package ru.gb.SpringOne.api;
 
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.db.SpringOne.market.api.ProductDto;
+import ru.db.springone.market.api.ProductDto;
 import ru.gb.SpringOne.services.ProductService;
-import ru.gb.SpringOne.utils.Converter;
+import ru.gb.SpringOne.utils.AppConverter;
 
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
-    private final Converter converter;
+    private final AppConverter converter;
 
-    public ProductController(ProductService productService, Converter converter) {
+    public ProductController(ProductService productService, AppConverter converter) {
         this.productService = productService;
         this.converter = converter;
     }
@@ -35,5 +35,21 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductDto getProduct(@PathVariable Long id) {
         return converter.productToProductDto(productService.getProduct(id));
+    }
+
+
+    @PostMapping
+    public ProductDto create(@RequestBody ProductDto productDto) {
+        return converter.productToProductDto(productService.save(converter.productDtoToProduct(productDto)));
+    }
+
+    @PutMapping
+    public ProductDto update(@RequestBody ProductDto productDto) {
+        return converter.productToProductDto(productService.update(converter.productDtoToProduct(productDto)));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable long id) {
+        productService.deleteProduct(id);
     }
 }
