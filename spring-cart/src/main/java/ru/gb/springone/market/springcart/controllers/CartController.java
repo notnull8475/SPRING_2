@@ -23,24 +23,35 @@ public class CartController {
         return new StringResponse(UUID.randomUUID().toString());
     }
 
-    @GetMapping("/add/{id}")
-    public void addToCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
-        cartService.add(username, id);
+    @GetMapping("/{uuid}/add/{id}")
+    public void addToCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid, @PathVariable Long id) {
+        String targetUuid = getCartUuid(username, uuid);
+        cartService.add(targetUuid, id);
     }
 
-    @GetMapping("/clear")
-    public void clearCart(@RequestHeader(required = false) String username) {
-        cartService.clear(username);
+    @GetMapping("/{uuid}/clear")
+    public void clearCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid) {
+        String targetUuid = getCartUuid(username, uuid);
+        cartService.clear(targetUuid);
     }
 
-    @GetMapping("/remove/{id}")
-    public void removeFromCart(@RequestHeader(required = false) String username, @PathVariable Long id) {
-        cartService.remove(username, id);
+    @GetMapping("/{uuid}/remove/{id}")
+    public void removeFromCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid, @PathVariable Long id) {
+        String targetUuid = getCartUuid(username, uuid);
+        cartService.remove(targetUuid, id);
     }
 
-    @GetMapping
-    public CartDto getCurrentCart(@RequestHeader(required = false) String username) {
-        return cartConverter.entityToDto(cartService.getCurrentCart(username));
+    @GetMapping("/{uuid}")
+    public CartDto getCurrentCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid) {
+        String targetUuid = getCartUuid(username, uuid);
+        return cartConverter.entityToDto(cartService.getCurrentCart(targetUuid));
+    }
+
+    private String getCartUuid(String username, String uuid) {
+        if (username != null) {
+            return username;
+        }
+        return uuid;
     }
 
 }
