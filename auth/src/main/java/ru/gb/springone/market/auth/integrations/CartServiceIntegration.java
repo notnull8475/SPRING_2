@@ -1,4 +1,4 @@
-package ru.gb.SpringOne.integrations;
+package ru.gb.springone.market.auth.integrations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,24 +10,6 @@ import ru.db.springone.market.api.CartMergeRequest;
 @RequiredArgsConstructor
 public class CartServiceIntegration {
     private final WebClient cartServiceWebClient;
-
-    public CartDto getCurrentCart(String username) {
-        return cartServiceWebClient.get()
-                .uri("/api/v1/cart")
-                .header("username", username)
-                .retrieve()
-                .bodyToMono(CartDto.class)
-                .block();
-    }
-
-    public void clear(String username) {
-        cartServiceWebClient.get()
-                .uri("/api/v1/cart/clear")
-                .header("username", username)
-                .retrieve()
-                .toBodilessEntity()
-                .block();
-    }
 
     public void mergeCarts(String username, String uuid) {
         cartServiceWebClient.post()
