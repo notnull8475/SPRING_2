@@ -13,6 +13,7 @@
 
 
 
+
 | service name  | port | prefix |
 |---------------|------|--------|
 | auth-service  | 8081 | /auth  |
@@ -21,3 +22,12 @@
 | cart-service  | 8084 | /cart  |
 
 front-service work on node.js port is 8080
+=======
+### microservices ###
+auth
+app
+gateway
+cart
+api
+front
+admin
