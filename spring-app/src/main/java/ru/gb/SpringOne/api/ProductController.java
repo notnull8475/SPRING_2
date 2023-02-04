@@ -7,15 +7,15 @@ import ru.db.springone.market.api.ProductDto;
 import ru.db.springone.market.api.ResourceNotFoundException;
 import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.services.ProductService;
-import ru.gb.SpringOne.utils.AppConverter;
+import ru.gb.SpringOne.converters.ProductConverter;
 
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
-    private final AppConverter converter;
+    private final ProductConverter converter;
 
-    public ProductController(ProductService productService, AppConverter converter) {
+    public ProductController(ProductService productService, ProductConverter converter) {
         this.productService = productService;
         this.converter = converter;
     }
