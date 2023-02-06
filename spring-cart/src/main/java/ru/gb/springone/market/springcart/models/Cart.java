@@ -19,9 +19,12 @@ public class Cart {
     }
 
     public List<CartItem> getItems() {
-        return Collections.unmodifiableList(items);
+        return items;
     }
 
+    public void addItems(List<CartItem> items){
+        this.items.addAll(items);
+    }
     public void add(ProductDto product) {
         for (CartItem item : items) {
             if (product.getId().equals(item.getProductId())) {

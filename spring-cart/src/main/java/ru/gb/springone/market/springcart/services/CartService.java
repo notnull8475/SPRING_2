@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import ru.db.springone.market.api.CartMergeRequest;
 import ru.db.springone.market.api.ProductDto;
 import ru.gb.springone.market.springcart.integrations.ProductServiceIntegration;
 import ru.gb.springone.market.springcart.models.Cart;
+import ru.gb.springone.market.springcart.models.CartItem;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @Service
@@ -44,5 +47,11 @@ public class CartService {
         Cart cart = getCurrentCart(uuid);
         operation.accept(cart);
         redisTemplate.opsForValue().set(cartPrefix + uuid, cart);
+    }
+
+    public void merge(CartMergeRequest mergeRequest) {
+        Cart cartNonAuth = getCurrentCart(mergeRequest.getUUID());
+        List<CartItem> items = cartNonAuth.getItems();
+        execute(mergeRequest.getUsername(), cart -> cart.addItems(items));
     }
 }
