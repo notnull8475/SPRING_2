@@ -5,7 +5,10 @@ const router = createRouter({
   routes: [
     {path: '/',name: 'home',component: () => import('@/views/Home.vue')},
     {path: '/products',name: 'products',component: () => import('@/views/ProductList.vue')},
-    {path: '/login',name: 'login',component: ()=>import('@/views/Login.vue')}
+    {path: '/login',name: 'login',component: ()=>import('@/views/Login.vue')},
+    {path: '/orders', name: 'orders', component: ()=>import('@/views/Orders.vue')},
+    {path: '/cart', name: 'cart', component: ()=>import('@/views/Cart.vue')},
+    {path: '/product_edit', name: 'product_edit', component: ()=>import('@/views/EditProduct.vue')}
   ]
 })
 // router.beforeEach((to, from, next) => {

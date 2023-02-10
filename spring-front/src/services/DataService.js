@@ -5,6 +5,10 @@ class DataService {
         return http.get('/products')
     }
 
+    getOrders() {
+        return http.get('/orders')
+    }
+
     getProductById(id) {
         return http.get('/products/${id}')
     }
@@ -43,6 +47,12 @@ class DataService {
     authUser(auth){
         return http.post('/auth', auth)
     }
+
+    registration(registerUser){
+        return http.post('/registration', registerUser)
+    }
+
+    
 }
 
 export default new DataService();

@@ -17,8 +17,11 @@ import {RouterLink, RouterView} from 'vue-router';</script>
               <RouterLink to="/products" class="nav-link text-white">Товары</RouterLink>
               <RouterLink to="/cart" class="nav-link text-white">Корзина</RouterLink>
               <RouterLink to="/orders" class="nav-link text-white">Заказы</RouterLink>
-              <RouterLink to="/login" class="nav-link text-white">Войти</RouterLink>
             </div>
+          </div>
+          <div class="d-flex">
+            <button class="btn btn-outline-success mx-2">Войти</button>
+            <button class="btn btn-outline-success">Выйти</button>
           </div>
         </div>
       </nav>
@@ -39,14 +42,7 @@ import {RouterLink, RouterView} from 'vue-router';</script>
           </a>
         </div>
         <div class="col mb-3">
-          <h5>Меню</h5>
-          <ul class="nav flex-column">
-            <RouterLink to="/" class="nav-link p-0 text-muted">Главная</RouterLink>
-            <RouterLink to="/products" class="nav-link p-0 text-muted">Товары</RouterLink>
-            <RouterLink to="/cart" class="nav-link p-0 text-muted">Корзина</RouterLink>
-            <RouterLink to="/orders" class="nav-link p-0 text-muted">Заказы</RouterLink>
-            <RouterLink to="/login" class="nav-link p-0 text-muted">Войти</RouterLink>
-          </ul>
+          <h5>Footer</h5>
         </div>
       </footer>
     </div>

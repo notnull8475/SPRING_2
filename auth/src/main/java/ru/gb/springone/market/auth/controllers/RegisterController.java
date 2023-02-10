@@ -24,7 +24,7 @@ public class RegisterController {
     private final JwtTokenUtil jwtTokenUtil;
 
 
-    @PostMapping("/registration")
+    @PostMapping("/api/v1/registration")
     public ResponseEntity<?> registerNewUser(@RequestBody RegisterUserDto registerUserDto) {
         if (appUserService.findByUsername(registerUserDto.getUsername()).isPresent()) {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Логин занят"), HttpStatus.BAD_REQUEST);
