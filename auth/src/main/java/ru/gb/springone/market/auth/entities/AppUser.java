@@ -22,14 +22,16 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "username")
     private String username;
-    @Column(nullable = false)
+    @Column(name = "password",nullable = false)
     private String password;
+    @Column(name = "created_at")
     @CreationTimestamp
     private Timestamp createdAt;
+    @Column(name = "updated_at")
     @UpdateTimestamp
     private Timestamp updatedAt;
 

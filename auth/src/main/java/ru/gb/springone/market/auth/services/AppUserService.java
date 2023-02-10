@@ -49,7 +49,7 @@ public class AppUserService implements UserDetailsService {
 
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<AppRole> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
     }
 
     public Page<AppUser> getUsers(int rows, int page) {

@@ -17,3 +17,7 @@ spring:
   security:
     csrf:
       disabled: true
+
+#logging:
+#  level:
+#    root: debug

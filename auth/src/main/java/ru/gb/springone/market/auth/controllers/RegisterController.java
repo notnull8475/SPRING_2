@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.db.springone.market.api.AppError;
 import ru.db.springone.market.api.JwtResponse;
 import ru.db.springone.market.api.RegisterUserDto;
+import ru.gb.springone.market.auth.integrations.CartServiceIntegration;
 import ru.gb.springone.market.auth.services.AppUserService;
 import ru.gb.springone.market.auth.utils.JwtTokenUtil;
 
@@ -22,6 +23,7 @@ public class RegisterController {
     private final AppUserService appUserService;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
+    private final CartServiceIntegration integration;
 
 
     @PostMapping("/api/v1/registration")
@@ -36,6 +38,7 @@ public class RegisterController {
             String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));
         }
+        integration.mergeCarts(registerUserDto.getUsername(), registerUserDto.getUUID());
         return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Ошибка регистрации"), HttpStatus.BAD_REQUEST);
         // TODO полностью реализовать метод, как считаете нужным
         //  ниже всего лишь пример хеширования паролей

@@ -28,7 +28,7 @@ public class DBRootUserFill {
             appUser = AppUser.builder()
                     .username("root")
                     .password(new BCryptPasswordEncoder().encode("root"))
-                    .roles(Collections.singleton(roleRepository.findByName("ROOT").get()))
+                    .roles(Collections.singleton(roleRepository.findByRoleName("ROOT").get()))
                     .build();
             appUserRepository.save(appUser);
         }

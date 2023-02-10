@@ -8,15 +8,15 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: springone
     password: springone
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-  liquibase:
-    change-log: db/changelog/db.changelog-master.yml
-  security:
-    csrf:
-      disabled: true
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: validate
+#  liquibase:
+#    change-log: db/changelog/db.changelog-master.yml
+#  security:
+#    csrf:
+#      disabled: true
 
 integrations:
   spring-cart:

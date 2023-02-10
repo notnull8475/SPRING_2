@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.db.springone.market.api.AppError;
 import ru.db.springone.market.api.JwtRequest;
 import ru.db.springone.market.api.JwtResponse;
+import ru.gb.springone.market.auth.integrations.CartServiceIntegration;
 import ru.gb.springone.market.auth.services.AppUserService;
 import ru.gb.springone.market.auth.utils.JwtTokenUtil;
 
@@ -24,6 +25,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final AppUserService userService;
     private final JwtTokenUtil jwtTokenUtil;
+    private final CartServiceIntegration integration;
 
     @PostMapping("/api/v1/auth")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
@@ -34,6 +36,7 @@ public class AuthController {
         }
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails);
+        integration.mergeCarts(authRequest.getUsername(),authRequest.getUUID());
         return ResponseEntity.ok(new JwtResponse(token));
     }
 }

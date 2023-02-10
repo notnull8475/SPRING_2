@@ -13,5 +13,5 @@ public class AppRole {
     @Column(name = "id")
     private Long id;
     @Column(name = "role_name")
-    private String name;
+    private String roleName;
 }

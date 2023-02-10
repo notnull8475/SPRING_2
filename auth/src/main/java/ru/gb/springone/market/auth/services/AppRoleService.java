@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.gb.springone.market.auth.entities.AppRole;
 import ru.gb.springone.market.auth.repositories.AppRoleRepository;
 
-import javax.management.relation.RoleNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,7 @@ public class AppRoleService {
     private final AppRoleRepository roleRepository;
 
     public Optional<AppRole> getByName(String roleName) {
-        return roleRepository.findByName(roleName);
+        return roleRepository.findByRoleName(roleName);
     }
 
     public List<AppRole> getRoles() {
@@ -26,7 +25,7 @@ public class AppRoleService {
         return roleRepository.findById(id).orElse(null);
     }
 
-    public AppRole getUserRole(){
-        return roleRepository.findByName("USER").get();
+    public AppRole getUserRole() {
+        return roleRepository.findByRoleName("USER").get();
     }
 }

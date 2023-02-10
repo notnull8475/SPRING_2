@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.db.springone.market.api.CartDto;
+import ru.db.springone.market.api.OrderDto;
 import ru.gb.SpringOne.integrations.CartServiceIntegration;
 import ru.gb.SpringOne.models.Order;
 import ru.gb.SpringOne.models.OrderItem;
 import ru.gb.SpringOne.repositories.OrderRepository;
 
-
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,7 +40,12 @@ public class OrderService {
         return order;
     }
 
-//    public Order getOrders(){
-//        return orderRepository.
-//    }
+
+    public List<Order> findAllByUsername(String username) {
+        return orderRepository.findAllByUsername(username);
+    }
+
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
+    }
 }

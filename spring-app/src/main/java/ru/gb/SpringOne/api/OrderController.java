@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.OrderDto;
+import ru.gb.SpringOne.converters.OrderConverter;
 import ru.gb.SpringOne.services.OrderService;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
+    private final OrderConverter converter;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -21,7 +23,12 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<OrderDto> getOrders(){
-        orderService.
+    public List<OrderDto> getOrders(@RequestHeader String username) {
+        return orderService.findAllByUsername(username).stream().map(converter::entityToDto).toList();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable Long id) {
+        orderService.deleteById(id);
     }
 }
