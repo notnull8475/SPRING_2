@@ -8,3 +8,14 @@ integrations:
     connect-timeout: 5000
     read-timeout: 10000
     write-timeout: 5000
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+cart-service:
+  cart-prefix: CART_SERVICE_
+#logging:
+#  level:
+#    root: debug
+

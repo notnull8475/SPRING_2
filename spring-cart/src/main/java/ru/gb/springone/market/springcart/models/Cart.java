@@ -18,10 +18,6 @@ public class Cart {
         this.totalPrice = BigDecimal.ZERO;
     }
 
-    public List<CartItem> getItems() {
-        return items;
-    }
-
     public void addItems(List<CartItem> items){
         this.items.addAll(items);
     }

@@ -18,6 +18,6 @@ public class CartItem {
 
     public void changeQuantity(int delta) {
         quantity += delta;
-        price = price.multiply(BigDecimal.valueOf(quantity));
+        price = pricePerProduct.multiply(BigDecimal.valueOf(quantity));
     }
 }

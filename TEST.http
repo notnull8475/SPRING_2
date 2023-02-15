@@ -42,3 +42,14 @@ Content-Type: application/json
   "description": "test product updated"
 }
 
+
+
+### CART SERVICE TEST
+GET http://127.0.0.1:8085/market-carts/api/v1/carts/generate_uuid
+
+### add product to cart
+GET http://127.0.0.1:8085/market-carts/api/v1/carts/1bc910d7-aed6-4ae8-b05e-3222a489154d/add/3
+
+
+### add product to cart
+GET http://127.0.0.1:8085/market-carts/api/v1/carts/1bc910d7-aed6-4ae8-b05e-3222a489154d

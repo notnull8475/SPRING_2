@@ -1,6 +1,5 @@
 package ru.gb.springone.market.springcart.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.CartDto;
 import ru.db.springone.market.api.CartMergeRequest;
@@ -12,11 +11,15 @@ import java.util.UUID;
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/carts")
 public class CartController {
     private final CartService cartService;
     private final CartConverter cartConverter;
+
+    public CartController(CartService cartService, CartConverter cartConverter) {
+        this.cartService = cartService;
+        this.cartConverter = cartConverter;
+    }
 
 
     @GetMapping("/generate_uuid")
@@ -31,9 +34,9 @@ public class CartController {
     }
 
     @GetMapping("/{uuid}/add/{id}")
-    public void addToCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid, @PathVariable Long id) {
+    public CartDto addToCart(@RequestHeader(name = "username", required = false) String username, @PathVariable String uuid, @PathVariable Long id) {
         String targetUuid = getCartUuid(username, uuid);
-        cartService.add(targetUuid, id);
+        return cartConverter.entityToDto(cartService.add(targetUuid, id));
     }
 
     @GetMapping("/{uuid}/clear")
