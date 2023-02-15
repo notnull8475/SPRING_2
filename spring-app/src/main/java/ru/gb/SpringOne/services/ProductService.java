@@ -41,7 +41,7 @@ public class ProductService {
 
     @Transactional
     public Product update(Product product) {
-        product = productsRepository.findById(product.getId()).orElseThrow(() -> new ResourceNotFoundException("Невозможно обновить, продукт не найден"));
+        productsRepository.findById(product.getId()).orElseThrow(() -> new ResourceNotFoundException("Невозможно обновить, продукт не найден"));
         productsRepository.save(product);
         return product;
     }

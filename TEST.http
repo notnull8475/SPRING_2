@@ -11,3 +11,34 @@ Content-Type: application/json
   "username": "root",
   "password": "root"
 }
+
+
+### products test
+GET http://127.0.0.1:8084/market-app/api/v1/products
+
+### get product byID
+GET http://127.0.0.1:8084/market-app/api/v1/products/3
+
+
+### create product
+POST http://127.0.0.1:8084/market-app/api/v1/products
+Content-Type: application/json
+
+{
+  "title":"Test3",
+  "price": "8000",
+  "description": "test product"
+}
+
+
+### update product
+PUT http://127.0.0.1:8084/market-app/api/v1/products
+Content-Type: application/json
+
+{
+  "id": "3",
+  "title":"Test3",
+  "price": "100000",
+  "description": "test product updated"
+}
+
