@@ -1,0 +1,13 @@
+POST http://localhost:8082/api/v1/auth
+Content-Type: application/x-www-form-urlencoded
+
+username=root&password=root
+
+### Send request with dynamic variables in request's body
+POST http://localhost:8082/market-auth/api/v1/auth
+Content-Type: application/json
+
+{
+  "username": "root",
+  "password": "root"
+}

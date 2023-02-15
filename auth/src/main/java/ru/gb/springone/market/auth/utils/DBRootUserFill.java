@@ -17,6 +17,7 @@ import java.util.Objects;
 public class DBRootUserFill {
     private final AppUsersRepository appUserRepository;
     private final AppRoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @EventListener(ApplicationReadyEvent.class)
@@ -27,7 +28,7 @@ public class DBRootUserFill {
             System.out.println("ROOT USER ADD");
             appUser = AppUser.builder()
                     .username("root")
-                    .password(new BCryptPasswordEncoder().encode("root"))
+                    .password(passwordEncoder.encode("root"))
                     .roles(Collections.singleton(roleRepository.findByRoleName("ROOT").get()))
                     .build();
             appUserRepository.save(appUser);

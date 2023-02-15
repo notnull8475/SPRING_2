@@ -17,7 +17,9 @@ spring:
   security:
     csrf:
       disabled: true
-
+jwt:
+  secret: AuFiEsUwvlnGqQA7u2DtUhaXDAQpaMpt56bi0M88Bmd9d1SmElDK1TtXcbJEC9KPPCKa5J
+  expireTime: 3600000
 #logging:
 #  level:
 #    root: debug

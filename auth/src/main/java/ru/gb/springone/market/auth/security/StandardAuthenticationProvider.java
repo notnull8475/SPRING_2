@@ -8,9 +8,8 @@ import org.springframework.security.authentication.dao.AbstractUserDetailsAuthen
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Slf4j
 @Component
@@ -18,11 +17,12 @@ import java.util.Objects;
 public class StandardAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     private final UserDetailsService userDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication)
             throws AuthenticationException {
-        if (!Objects.equals(userDetails.getPassword(), authentication.getCredentials())) {
+        if (!bCryptPasswordEncoder.matches((String) authentication.getCredentials(), userDetails.getPassword())) {
             log.error("Bad credentials for {}", userDetails.getUsername());
             throw new BadCredentialsException("Bad credentials");
         }

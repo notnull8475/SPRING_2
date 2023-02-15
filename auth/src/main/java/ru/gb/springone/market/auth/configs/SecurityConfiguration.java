@@ -7,40 +7,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import ru.gb.springone.market.auth.services.AppUserService;
 
 
 @Configuration
 public class SecurityConfiguration {
-
-    // client -> [username, password] -> /auth
-    // service -> [token] -> client
-
-    // client -> [token] -> /resource
-
-    //    @Autowired
-//    private JwtRequestFilter filter;
-    @Autowired
-    private AppUserService userService;
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return webSecurity -> webSecurity.ignoring().requestMatchers("/auth");
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf().disable()
                 .cors().disable()
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
