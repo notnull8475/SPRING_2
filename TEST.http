@@ -53,3 +53,17 @@ GET http://127.0.0.1:8085/market-carts/api/v1/carts/1bc910d7-aed6-4ae8-b05e-3222
 
 ### add product to cart
 GET http://127.0.0.1:8085/market-carts/api/v1/carts/1bc910d7-aed6-4ae8-b05e-3222a489154d
+
+
+### gateway tests
+#### cart
+GET http://127.0.0.1:8080/carts/api/v1/carts/generate_uuid
+
+#### auth
+POST http://localhost:8080/auth/api/v1/auth
+Content-Type: application/json
+
+{
+  "username": "root",
+  "password": "root"
+}
