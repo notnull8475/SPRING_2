@@ -72,14 +72,26 @@ class DataService {
         return http.get(`/carts/api/v1/carts/${uuid}/remove/${productId}`)
     }
 
-    getCart(uuid,user) {
+    getCart(uuid, user) {
         console.log(`UUID:  ${uuid}`)
         console.log(`Username:  ${user}`)
-        return http({
-          url:`/carts/api/v1/carts/${uuid}`,
-          method: "GET",
-          headers: {username:`${user}`}
+        return http.get(`/carts/api/v1/carts/${uuid}`, `username:${user}`)
+    }
+
+    changeQuantity(index, delta) {
+        let uuid = localStorage.getItem("uuid")
+        let user = localStorage.getItem("user")
+        return http.put(`/carts/api/v1/carts/${uuid}/change/`, {
+            username: user,
+            delta: delta,
+            index: index
         })
+    }
+
+    deleteProductFromCart(productId) {
+        let uuid = localStorage.getItem("uuid")
+        let user = localStorage.getItem("user")
+        return http.get(`/carts/api/v1/carts/${uuid}/remove/${productId}`, `username:${user}`)
     }
 
     // ------------ carts service stop --------------------

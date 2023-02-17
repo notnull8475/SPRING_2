@@ -14,9 +14,7 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: db/changelog/db.changelog-master.yml
-  security:
-    csrf:
-      disabled: true
+
 jwt:
   secret: AuFiEsUwvlnGqQA7u2DtUhaXDAQpaMpt56bi0M88Bmd9d1SmElDK1TtXcbJEC9KPPCKa5J
   expireTime: 3600000

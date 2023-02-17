@@ -1,5 +1,6 @@
 <script>
 import DataService from '@/services/DataService';
+import router from "@/router";
 
 export default {
   name: 'auth-user',
@@ -16,10 +17,10 @@ export default {
     authenticate() {
       DataService.authUser(this.user)
           .then(response => {
-            localStorage.token = response.data();
-            console.log(localStorage.token)
-            // localStorage.setItem(token, response.data())
-            alert("response " + response.data())
+            console.log(response.data.token)
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem("user", this.user.username)
+            router.push('home')
           })
           .catch(e => alert(e))
     }
@@ -28,7 +29,7 @@ export default {
 </script>
 <template>
   <div class="d-flex justify-content-center row mt-5">
-    <form class="col-4 block">
+    <div class="col-4 block">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" id="username" v-model="user.username"/>
@@ -37,7 +38,7 @@ export default {
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" v-model="user.password"/>
       </div>
-      <button @click="authenticate" class="btn btn-primary">Submit</button>
-    </form>
+      <button @click="authenticate" class="btn btn-primary">Sign In</button>
+    </div>
   </div>
 </template>

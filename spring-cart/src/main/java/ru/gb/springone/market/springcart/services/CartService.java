@@ -59,4 +59,10 @@ public class CartService {
         List<CartItem> items = cartNonAuth.getItems();
         execute(mergeRequest.getUsername(), cart -> cart.addItems(items));
     }
+
+    public void chageQuantity(String targetUuid, int delta, int index) {
+        execute(targetUuid,c -> {
+            c.getItems().get(index).changeQuantity(delta);
+        });
+    }
 }

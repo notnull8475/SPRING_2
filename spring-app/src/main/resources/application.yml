@@ -24,7 +24,7 @@ integrations:
     connect-timeout: 5000
     read-timeout: 10000
     write-timeout: 5000
-#logging:
-#  level:
-#    root: debug
+logging:
+  level:
+    root: debug
 #  file:

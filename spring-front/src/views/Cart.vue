@@ -4,22 +4,25 @@
     <table class="table">
       <thead>
       <tr>
+        <th scope="col">Index</th>
         <th scope="col">productId</th>
         <th scope="col">productTitle</th>
         <th scope="col">quantity</th>
         <th scope="col">pricePerProduct</th>
         <th scope="col">price</th>
-        <th scope="col">Action</th>
+        <th scope="col">Delete from cart</th>
       </tr>
       </thead>
       <tbody v-for="(cartItem, index) in cartItems" :key="index">
       <tr>
+        <td>{{ index }}</td>
         <td>{{ cartItem.productId }}</td>
         <td>{{ cartItem.productTitle }}</td>
-        <td>{{ cartItem.quantity }}</td>
+        <td><a @click="changeQuantity(index,'-1')" class="btn">-</a>{{ cartItem.quantity }}<a
+            @click="changeQuantity(index,'1')" class="btn">+</a></td>
         <td>{{ cartItem.pricePerProduct }}</td>
         <td>{{ cartItem.price }}</td>
-        <td><a :href="'/cart/delete/' + order.id" class="btn btn-primary">Delete</a></td>
+        <td><a @click="deleteFromCart(cartItem.productId)" class="btn btn-primary">Delete</a></td>
       </tr>
       </tbody>
     </table>
@@ -37,19 +40,30 @@ export default {
   },
   methods: {
     retrieveCart() {
-      DataService.getCart(localStorage.getItem("uuid"),localStorage.getItem("user"))
+      DataService.getCart(localStorage.getItem("uuid"), localStorage.getItem("user"))
           .then(response => {
-            this.cartItems = response.data.content
+            console.log(response.data.items)
+            this.cartItems = response.data.items
           })
           .catch(e => console.log(e))
+    },
+    changeQuantity(index, delta) {
+      if (this.cartItems[index].quantity > 0) {
+        // console.log(index, this.cartItems[index].quantity, delta)
+        DataService.changeQuantity(index, delta).then(r => {
+              this.cartItems[index].quantity = this.cartItems[index].quantity + Number(delta)
+              this.cartItems[index].price = this.cartItems[index].pricePerProduct * this.cartItems[index].quantity
+            }
+        )
+
+
+      }
+    },
+    deleteFromCart(productId){
+      DataService.deleteProductFromCart(productId).then(this.retrieveCart)
     }
   },
   async mounted() {
-    DataService.generateUUID().then(r => {
-      localStorage.setItem("uuid", r.data.value)
-      console.log("UUID from response: " + r.data.value);
-      console.log("UUID in localStorage^ " + localStorage.getItem("uuid"))
-    });
     this.retrieveCart()
   }
 }

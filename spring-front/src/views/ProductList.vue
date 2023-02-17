@@ -8,7 +8,8 @@
         <th scope="col">TITLE</th>
         <th scope="col">PRICE</th>
         <th scope="col">DESCRIPTION</th>
-        <th scope="col" v-if="false">Actions</th>
+        <th scope="col">Add to Cart</th>
+        <th v-if="checkUser()" scope="col">Edit product</th>
       </tr>
       </thead>
       <tbody v-for="(product, index) in products" :key="index">
@@ -17,7 +18,8 @@
         <td>{{ product.title }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.description }}</td>
-        <td v-if="false"><a :href="'/products/' + product.id" class="btn btn-primary">Edit</a></td>
+        <td><a @click="addProductToCart(product.id)" class="btn btn-primary">Add to Cart</a></td>
+        <td><a v-if="checkUser()" @click="addProductToCart(product.id)" class="btn btn-primary">Edit product</a></td>
       </tr>
       </tbody>
     </table>
@@ -41,6 +43,15 @@ export default {
           })
           .catch(e => console.log(e))
           // .catch(e => alert(e))
+    },
+    addProductToCart(productId) {
+      DataService.addProductToCart(localStorage.getItem("uuid"),productId)
+          .then(r => console.log("product Added"))
+    },
+    checkUser(){
+      if (localStorage.getItem("user")){ return true} else {
+        return false
+      }
     }
   },
   async mounted() {

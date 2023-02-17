@@ -7,7 +7,24 @@ export default {
   methods:{
     logout(){
       DataService.logout();
+    },
+    getUUID(){
+      if (localStorage.getItem("uuid") == null) {
+        DataService.generateUUID().then(r => {
+          localStorage.setItem("uuid", r.data.value)
+          console.log("UUID from response: " + r.data.value);
+          console.log("UUID in localStorage^ " + localStorage.getItem("uuid"))
+        });
+      }
+    },
+    checkUser(){
+      if (localStorage.getItem("user")){ return true} else {
+        return false
+      }
     }
+  },
+  async mounted() {
+    this.getUUID();
   }
 }
 </script>
@@ -27,12 +44,12 @@ export default {
               <RouterLink to="/" class="nav-link text-white">Главная</RouterLink>
               <RouterLink to="/products" class="nav-link text-white">Товары</RouterLink>
               <RouterLink to="/cart" class="nav-link text-white">Корзина</RouterLink>
-              <RouterLink to="/orders" class="nav-link text-white">Заказы</RouterLink>
+              <RouterLink to="/orders" v-if="checkUser()" class="nav-link text-white">Заказы</RouterLink>
             </div>
           </div>
           <div class="d-flex">
             <RouterLink to="/login" class="btn btn-outline-success mx-2" onclick="">Войти</RouterLink>
-            <button class="btn btn-outline-success" v-if="false">Выйти</button>
+            <button class="btn btn-outline-success" v-if="checkUser()" >Выйти</button>
           </div>
         </div>
       </nav>

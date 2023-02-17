@@ -4,18 +4,22 @@ jwt:
   secret:
     AuFiEsUwvlnGqQA7u2DtUhaXDAQpaMpt56bi0M88Bmd9d1SmElDK1TtXcbJEC9KPPCKa5J
 spring:
+  security:
+    csrf:
+      disabled: true
   application:
     name: gateway
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       globalcors:
-        corsConfigurations:
+        cors-configurations:
           '[/**]':
-#            allowedOrigins: "http://localhost:3000"
-            allowedMethods:
-              - GET
-              - POST
-            allowedHeaders: "*"
+            allowed-origins: '*'
+            allowed-methods: '*'
+            allowed-headers: '*'
+#            allow-credentials: true
       routes:
         - id: app-service
           uri: http://localhost:8084

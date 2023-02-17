@@ -3,6 +3,7 @@ package ru.gb.springone.market.springcart.controllers;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.CartDto;
 import ru.db.springone.market.api.CartMergeRequest;
+import ru.db.springone.market.api.ChangeQuantityRequest;
 import ru.db.springone.market.api.StringResponse;
 import ru.gb.springone.market.springcart.converters.CartConverter;
 import ru.gb.springone.market.springcart.services.CartService;
@@ -29,7 +30,7 @@ public class CartController {
 
 
     @PostMapping("/merge")
-    public void mergeCarts(@RequestBody CartMergeRequest mergeRequest){
+    public void mergeCarts(@RequestBody CartMergeRequest mergeRequest) {
         cartService.merge(mergeRequest);
     }
 
@@ -58,6 +59,13 @@ public class CartController {
     }
 
 
+    @PutMapping("/{uuid}/change/")
+    public void changeQuantity(@RequestBody ChangeQuantityRequest changeQuantityRequest,
+                               @PathVariable String uuid) {
+        System.out.println("##########################change quantity " + changeQuantityRequest.toString());
+        String targetUuid = getCartUuid(changeQuantityRequest.getUsername(), uuid);
+        cartService.chageQuantity(targetUuid, changeQuantityRequest.getDelta(), changeQuantityRequest.getIndex());
+    }
 
 
     private String getCartUuid(String username, String uuid) {
