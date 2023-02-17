@@ -1,5 +1,16 @@
-<script setup>
-import {RouterLink, RouterView} from 'vue-router';</script>
+<script>
+
+import {RouterLink, RouterView} from 'vue-router';
+import DataService from "@/services/DataService";
+
+export default {
+  methods:{
+    logout(){
+      DataService.logout();
+    }
+  }
+}
+</script>
 
 <template>
   <header>
@@ -20,8 +31,8 @@ import {RouterLink, RouterView} from 'vue-router';</script>
             </div>
           </div>
           <div class="d-flex">
-            <button class="btn btn-outline-success mx-2">Войти</button>
-            <button class="btn btn-outline-success">Выйти</button>
+            <RouterLink to="/login" class="btn btn-outline-success mx-2" onclick="">Войти</RouterLink>
+            <button class="btn btn-outline-success" v-if="false">Выйти</button>
           </div>
         </div>
       </nav>

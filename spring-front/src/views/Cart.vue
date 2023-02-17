@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     retrieveCart() {
-      DataService.getOrders()
+      DataService.getCart(localStorage.getItem("uuid"),localStorage.getItem("user"))
           .then(response => {
             this.cartItems = response.data.content
           })
@@ -45,6 +45,11 @@ export default {
     }
   },
   async mounted() {
+    DataService.generateUUID().then(r => {
+      localStorage.setItem("uuid", r.data.value)
+      console.log("UUID from response: " + r.data.value);
+      console.log("UUID in localStorage^ " + localStorage.getItem("uuid"))
+    });
     this.retrieveCart()
   }
 }

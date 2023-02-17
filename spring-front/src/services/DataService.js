@@ -1,69 +1,88 @@
 import http from '@/http-common';
 
 class DataService {
-    getAllProducts() {
-        return http.get('/products')
+
+    // ------------ auth service start --------------------
+
+    authUser(auth) {
+        return http.post('/auth/api/v1/auth', auth)
     }
 
-    getOrders() {
-        return http.get('/orders')
+    registration(registerUser) {
+        return http.post('/auth/api/v1/registration', registerUser)
+    }
+
+    logout() {
+        return http.post('/auth/api/v1/auth/logout', localStorage.getItem('user'))
+    }
+
+    // ------------ auth service stop ---------------------
+    // ----------------------------------------------------
+    // ------------ products service start ----------------
+    getAllProducts() {
+        return http.get('/app/api/v1/products')
     }
 
     getProductById(id) {
-        return http.get('/products/${id}')
+        return http.get(`/app/api/v1/products/${id}`)
+        // return http.get('/app/api/v1/products/' + id)
     }
 
     createProduct(product) {
-        return http.post('/products', product)
+        return http.post('/app/api/v1/products', product)
     }
+
     updateProduct(product) {
-        return http.put('/products', product)
+        return http.put('/app/api/v1/products', product)
     }
 
-    deleteProduct(id){
-        return http.delete('/products/${id}')
+    deleteProduct(id) {
+        return http.delete(`/app/api/v1/products/${id}`)
     }
 
-    getUsersList() {
-        return http.get('/users')
+
+    getOrders() {
+        return http.get('/app/api/v1/orders')
     }
 
-    getUser(id) {
-        return http.get('/users/${id}')
+    createOrder() {
+        return http.post('/app/api/v1/orders')
     }
 
-    createUser(user) {
-        return http.post('/users', user)
+    deleteOrder(orderId) {
+        return http.delete(`/app/api/v1/orders/${orderId}`)
     }
 
-    updateUser(user) {
-        return http.put('/users', user)
+    // ------------ products service stop -----------------
+    // ----------------------------------------------------
+    // ------------ cars service start --------------------
+    generateUUID() {
+        return http.get('/carts/api/v1/carts/generate_uuid')
     }
 
-    deleteUser(id){
-        return http.delete('/users/${id}')
+    addProductToCart(uuid, productId) {
+        return http.get(`/carts/api/v1/carts/${uuid}/add/${productId}`)
     }
 
-    authUser(auth){
-        return http.post('/auth', auth)
+    clearCart(uuid) {
+        return http.get(`/carts/api/v1/carts/${uuid}/clear`)
     }
 
-    registration(registerUser){
-        return http.post('/registration', registerUser)
+    removeProductFromCart(uuid, productId) {
+        return http.get(`/carts/api/v1/carts/${uuid}/remove/${productId}`)
     }
 
-    
+    getCart(uuid,user) {
+        console.log(`UUID:  ${uuid}`)
+        console.log(`Username:  ${user}`)
+        return http({
+          url:`/carts/api/v1/carts/${uuid}`,
+          method: "GET",
+          headers: {username:`${user}`}
+        })
+    }
+
+    // ------------ carts service stop --------------------
 }
 
 export default new DataService();
-
-/*    - POST    - /auth                                   авторизация;
-    - GET     - /api/v1/users/                          получение списка пользователей
-    - GET     - /api/v1/users/{id}                      получение пользователя по id
-
-    - GET     - /api/v1/products/                       список продуктов
-    - GET     - /api/v1/products/{id}                   продукт по id
-
-    - POST    - /api/v1/admin/products/                 создать продукт
-    - PUT     - /api/v1/admin/products/                 обновить продукт
-    - DELETE  - /api/v1/admin/products/{id}             удалить продукт*/
