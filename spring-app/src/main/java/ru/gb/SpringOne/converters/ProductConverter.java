@@ -7,6 +7,7 @@ import ru.gb.SpringOne.models.Product;
 @Component
 public class ProductConverter {
     public Product productDtoToProduct(ProductDto productDto) {
+//        Использование builder
         return Product.builder()
                 .id(productDto.getId())
                 .title(productDto.getTitle())
