@@ -67,3 +67,18 @@ Content-Type: application/json
   "username": "root",
   "password": "root"
 }
+
+
+### Spring2 HomeWork12
+# поднял keycloak в docker командой:
+# docker run -d --name keycloak -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.3 start-dev
+# создал user и client по уроку
+# запросил информацию с keycloak командой:
+# curl http://localhost:8080/realms/master/.well-known/openid-configuration | jq
+# выполнил запрос нижу
+# postman не захотел работать
+# файл ответа : 2023-02-20T162336.200.json
+POST http://localhost:8080/realms/master/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=test_request&grant_type=password&username=test&password=test
