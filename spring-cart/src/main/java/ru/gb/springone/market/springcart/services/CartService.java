@@ -16,9 +16,13 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @Service
+
 public class CartService {
     @Autowired
     private  ProductServiceIntegration productServiceIntegration;
+
+    /* Как понял из урока - данное использование Redis является реализацией структурного паттерна прокси.  * */
+
     @Autowired
     private  RedisTemplate<String, Object> redisTemplate;
 
