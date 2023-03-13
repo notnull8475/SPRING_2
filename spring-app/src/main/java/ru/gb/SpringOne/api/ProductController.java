@@ -5,6 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.db.springone.market.api.ProductDto;
 import ru.db.springone.market.api.ResourceNotFoundException;
+import ru.gb.SpringOne.api.patterns.Command;
+import ru.gb.SpringOne.api.patterns.CreateProductCommand;
+import ru.gb.SpringOne.api.patterns.DeleteProductCommand;
+import ru.gb.SpringOne.api.patterns.UpdateProductCommand;
 import ru.gb.SpringOne.models.Product;
 import ru.gb.SpringOne.services.ProductService;
 import ru.gb.SpringOne.converters.ProductConverter;
@@ -44,16 +48,34 @@ public class ProductController {
 
     @PostMapping
     public ProductDto create(@RequestBody ProductDto productDto) {
-        return converter.productToProductDto(productService.save(converter.productDtoToProduct(productDto)));
-    }
+        Command createCommand = new CreateProductCommand(productService, converter, productDto);
 
+        return converter.productToProductDto((Product) createCommand.execute());
+    }
     @PutMapping
-    public ProductDto update(@RequestBody ProductDto productDto) {
-        return converter.productToProductDto(productService.update(converter.productDtoToProduct(productDto)));
+    public ProductDto update(@RequestBody ProductDto productDto){
+        Command updateCommand = new UpdateProductCommand(productService,converter,productDto);
+        return converter.productToProductDto((Product) updateCommand.execute());
+    }
+    @DeleteMapping
+    public void deleteById(@PathVariable long id){
+        Command deleteCommand = new DeleteProductCommand(productService,converter,productService.getProduct(id).get());
+        deleteCommand.execute();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable long id) {
-        productService.deleteProduct(id);
-    }
+//    @PostMapping
+//    public ProductDto create(@RequestBody ProductDto productDto) {
+//
+//        return converter.productToProductDto(productService.save(converter.productDtoToProduct(productDto)));
+//    }
+//
+//    @PutMapping
+//    public ProductDto update(@RequestBody ProductDto productDto) {
+//        return converter.productToProductDto(productService.update(converter.productDtoToProduct(productDto)));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteById(@PathVariable long id) {
+//        productService.deleteProduct(id);
+//    }
 }
