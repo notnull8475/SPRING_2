@@ -7,13 +7,12 @@ import ru.gb.SpringOne.models.Product;
 @Component
 public class ProductConverter {
     public Product productDtoToProduct(ProductDto productDto) {
-//        Использование builder
-        return Product.builder()
-                .id(productDto.getId())
-                .title(productDto.getTitle())
-                .description(productDto.getDescription())
-                .price(productDto.getPrice())
-                .build();
+        Product product = new Product();
+        product.setId(productDto.getId());
+        product.setTitle(productDto.getTitle());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        return product;
     }
 
     public ProductDto productToProductDto(Product product) {
